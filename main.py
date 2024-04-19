@@ -3,10 +3,17 @@ import cv2
 import numpy as np
 import pytesseract
 import uvicorn
-
+from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI()
 
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # Allow requests from any origin
+    allow_credentials=True,
+    allow_methods=["GET", "POST", "PUT", "DELETE"],  # Adjust allowed methods as needed
+    allow_headers=["*"],  # Allow all headers
+)
 
 @app.get("/")
 def home():
